@@ -1,0 +1,14 @@
+{
+  "name": "micro-chat",
+  "version": "1.0.0",
+  "description": "Micro Service : Chat",
+  "main": "src/Main.purs",
+  "repository": "https://github.com/iarthstar/micro-chat",
+  "author": "Arth K. Gajjar",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "uuid": "^3.4.0",
+    "uuid-validate": "^0.0.3"
+  }
+}
