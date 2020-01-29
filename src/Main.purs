@@ -1,13 +1,15 @@
 module Main where
 
-import Prelude (Unit, bind, discard, pure, unit, ($))
+import Prelude
 
+import Data.Either (Either(..))
 import Effect (Effect)
+import Effect.Aff (error)
 import Effect.Aff as Aff
 import Effect.Class (liftEffect)
 import Effect.Console as Console
-import Micro.Chat (createChat, createUser, sendMessage)
-import Micro.Chat.Types (Chat(..), Message(..))
+import Micro.IM (createChat, createUser, sendMessage)
+import Micro.IM.Types (Chat(..), Message(..))
 
 main :: Effect Unit
 main = do
@@ -17,14 +19,17 @@ main = do
   Aff.launchAff_ do
   
     -- |  Creating 2 Users
-    userOne <- createUser "Arth K. Gajjar" "iarthstar"
-    userTwo <- createUser "Dhruvi K. Gajjar" "dhruvi2079"
+    eitherUserOne <- createUser "Arth K. Gajjar" "iarthstar"
+    eitherUserTwo <- createUser "Tara Sutaria" "seetara"
 
-    -- | Creating a Chat in between them
-    chatId <- createChat (Chat userOne userTwo)
+    -- | Creating a Chat between them
+    eitherChatId <- case eitherUserOne, eitherUserTwo of
+      Right userId1, Right userId2 -> createChat userId1 (Chat userId1 userId2)
+      _            , _             -> pure $ Left $ error ""
 
-    -- | Sending Message from One User to Another
-    isSent <- sendMessage chatId (Text "Hi...")
+    -- | Sending a Message from One user to another
+    eitherMsgId <- case eitherChatId, eitherUserOne of
+      Right chatId, Right userId1 -> sendMessage userId1 chatId (Text "Hello World...")
+      _           , _             -> pure $ Left $ error ""          
 
     liftEffect $ pure unit
-  

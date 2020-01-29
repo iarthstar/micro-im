@@ -1,4 +1,4 @@
-module Micro.Chat.Types where
+module Micro.IM.Types where
 
 import Data.Tuple (Tuple)
 import Data.UUID (UUID)

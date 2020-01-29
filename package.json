@@ -1,9 +1,8 @@
 {
-  "name": "micro-chat",
+  "name": "micro-im",
   "version": "1.0.0",
-  "description": "Micro Service : Chat",
+  "description": "Micro Service : Instant Messaging",
   "main": "src/Main.purs",
-  "repository": "https://github.com/iarthstar/micro-chat",
   "author": "Arth K. Gajjar",
   "license": "MIT",
   "private": false,
