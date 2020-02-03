@@ -1,1 +1,1 @@
-# Micro Service : Chat
+# Micro Service : Instant Messaging
